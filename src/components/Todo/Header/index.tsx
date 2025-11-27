@@ -3,14 +3,17 @@ import { Text, View } from "react-native";
 import styles from "./style";
 import Button from "../../ui/Button";
 import { Dispatch, SetStateAction } from "react";
+import { Todo } from "../types";
 
 type HeaderProps = {
   setShowAddForm: Dispatch<SetStateAction<boolean>>;
+  setSelectedItem: Dispatch<SetStateAction<Todo|null>>
 };
 
-const Header = ({ setShowAddForm }: HeaderProps) => {
+const Header = ({ setShowAddForm,setSelectedItem }: HeaderProps) => {
 
   const handlePress = ()=>{
+    setSelectedItem(null);  //cleanup add/edit form on toggling to ensure the correct mode (add/edit) is active 
     setShowAddForm((isVisible) => !isVisible);
   }
 

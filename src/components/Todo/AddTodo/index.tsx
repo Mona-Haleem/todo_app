@@ -8,12 +8,14 @@ import { Todo } from "../types";
 
 interface AddTodoProps {
   selectedTodo: Todo | null;
+  setSelectedTodo: React.Dispatch<React.SetStateAction<Todo | null>>;
   setShowAddForm: React.Dispatch<React.SetStateAction<boolean>>;
   onAdd: (task: string, description: string) => void;
   onEdit: (id: string, task: string, description: string) => void;
 }
 const AddTodo = ({
   selectedTodo,
+  setSelectedTodo,
   onAdd,
   onEdit,
   setShowAddForm,
@@ -23,7 +25,6 @@ const AddTodo = ({
     selectedTodo?.description || ""
   );
 
-  //sync form state whit selected todo
   useEffect(() => {
     setTask(selectedTodo?.task || "");
     setDescription(selectedTodo?.description || "");
@@ -38,11 +39,11 @@ const AddTodo = ({
     setTask("");
     setDescription("");
     setShowAddForm(false);
- 
+    setSelectedTodo(null)
   };
 
   const onCancel = () => {
-   
+    setSelectedTodo(null);
     setTask("");
     setDescription("");
     setShowAddForm(false);
