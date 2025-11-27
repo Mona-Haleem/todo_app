@@ -1,7 +1,3 @@
-/**
- * Unit tests for the Modal component.
- * Tests rendering, button actions, visibility control, and custom text.
- */
 
 
 import React from 'react';
