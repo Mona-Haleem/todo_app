@@ -1,24 +1,30 @@
-import { FlatList } from "react-native";
+import { Dimensions, FlatList} from "react-native";
 import { Todo } from "../types";
 import styles from "./style";
-import { useMemo } from "react";
 import TodoItem from "../TodoItem";
 
-const TodoList = ({ todoItems }: { todoItems: Todo[] }) => {
-  const sortedTodlist = useMemo(
-    () =>
-      todoItems.sort(
-        (a: Todo, b: Todo) => Number(a.completed) - Number(b.completed)
-      ),
-    [todoItems]
-  );
+interface TodoListProps {
+  todoItems: Todo[];
+}
+const TodoList = ({
+  todoItems,
+ 
+}: TodoListProps) => {
+  const width = Dimensions.get("window").width;
   return (
     <FlatList
-      data={sortedTodlist}
+      data={todoItems}
       keyExtractor={(item: Todo) => item.id.toString()}
-      renderItem={({ item }) => <TodoItem todoItem={item} />}
-      style={styles.listContainer} 
-      contentContainerStyle={styles.list} 
+      renderItem={({ item }) => (
+        <TodoItem
+          todoItem={item}
+       
+        />
+      )}
+    
+      style={[styles.listContainer, { width: width }]}
+      contentContainerStyle={styles.list}
+      showsVerticalScrollIndicator={false}
       initialNumToRender={10}
       removeClippedSubviews={true}
     />

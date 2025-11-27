@@ -1,27 +1,78 @@
-import { useState } from "react";
 import { type Todo } from "../types";
 import styles from "./style";
-import { Text, View } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import {  Text, View } from "react-native";
+import Button from "../../ui/Button";
+import {  useState } from "react";
 
-const TodoItem = ({ todoItem }: { todoItem: Todo }) => {
-  // const [todoItem, setTodo] = useState(itemData)
+interface TodoItemProps {
+  todoItem: Todo;
+ }
+const TodoItem = ({
+  todoItem,
+ 
+}: TodoItemProps) => {
+const [expanded, setExpanded] = useState(false);
+  
+
+  const handleDeleteAction = () => {
+    
+  };
+
+  const handleStartEdit = () => {
+  
+  };
+
+  
+
   return (
-    <View style={styles.container}>
-      <View style={styles.info}>
-        <Ionicons
-          style={styles.completed}
-          name={todoItem.completed ? "checkmark-circle" : "ellipse-outline"}
-          fill={todoItem.completed ? "#000" : "#fff"}
-          // color={todoItem.completed ? "#fff" : "#000"}
-          size={22}
+    <View
+      style={[
+        styles.container,
+        todoItem.completed && styles.completedContainer,
+      ]}
+    >
+      <View style={styles.content}>
+        <Button
+          icons={[todoItem.completed ? "checkmark-circle" : "ellipse-outline"]}
+          style={styles.checkbox}
+          iconStyle={{ color: "#000" }}
+          variant="text"
+          onPress={() => {}}
         />
-        <Text style={[styles.task,todoItem.completed ? styles.completedTask :{}]} numberOfLines={1} ellipsizeMode="tail">{todoItem.task}</Text>
-        <Text style={styles.description} numberOfLines={2} ellipsizeMode="tail">{todoItem.description}</Text>
+        <Text
+          style={[styles.task, todoItem.completed && styles.completedTask]}
+          numberOfLines={1}
+          ellipsizeMode="tail"
+        >
+          {todoItem.task}
+        </Text>
+        {todoItem.description && (
+          <Text
+            style={[
+              styles.description,
+              todoItem.completed && styles.completedTask,
+            ]}
+            onPress={() => setExpanded(!expanded)}
+            numberOfLines={expanded ? undefined:2 }
+            ellipsizeMode="tail"
+          >
+            {todoItem.description}
+          </Text>
+        )}
       </View>
       <View style={styles.actions}>
-        <Ionicons style={styles.edit} name={"create-outline"} size={22} />
-        <Ionicons style={styles.trash} name={"trash"} size={22} />
+        <Button
+          icons={["create-outline"]}
+          iconStyle={styles.editBtn}
+          variant="text"
+          onPress={handleStartEdit}
+        />
+        <Button
+          icons={["trash"]}
+          iconStyle={styles.trashBtn}
+          variant="text"
+          onPress={handleDeleteAction}
+        />
       </View>
     </View>
   );
