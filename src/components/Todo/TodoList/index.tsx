@@ -34,7 +34,15 @@ const TodoList = ({
           setShowAddForm={setShowAddForm}
         />
       )}
-    
+      ListEmptyComponent={
+          <View style={styles.emptyState}>
+            <Ionicons name="clipboard" size={20} style={styles.emptyStateIcon}/>
+            <Text style={styles.emptyStateTitle}>No tasks yet</Text>
+            <Text style={styles.emptyStateText}>
+              Tap the + button to create your first task
+            </Text>
+          </View>
+      }
       style={[styles.listContainer, { width: width }]}
       contentContainerStyle={styles.list}
       showsVerticalScrollIndicator={false}

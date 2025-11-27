@@ -1,8 +1,8 @@
 import { type Todo } from "../types";
 import styles from "./style";
-import {  Text, View } from "react-native";
+import { Animated, Text, View } from "react-native";
 import Button from "../../ui/Button";
-import {  useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface TodoItemProps {
   todoItem: Todo;
@@ -19,8 +19,21 @@ const TodoItem = ({
   setModalVisible,
   setShowAddForm,
 }: TodoItemProps) => {
+  const highlightAnim = useRef(new Animated.Value(0)).current;
 const [expanded, setExpanded] = useState(false);
   
+const flashHighlight = () => {
+    highlightAnim.setValue(1);
+    Animated.timing(highlightAnim, {
+      toValue: 0,
+      duration: 800,
+      useNativeDriver: false,
+    }).start();
+  };
+
+  useEffect(() => {
+    flashHighlight();
+  }, [todoItem.task, todoItem.description]);
 
   const handleDeleteAction = () => {
     setModalVisible(true);
@@ -32,13 +45,19 @@ const [expanded, setExpanded] = useState(false);
     setSelectedTodo(todoItem);
   };
 
-  
+  const animatedStyle = {
+    backgroundColor: highlightAnim.interpolate({
+      inputRange: [0, 1],
+      outputRange: [styles.container.backgroundColor || "#fff", "#6366F1"],
+    }),
+  };
 
   return (
-    <View
+    <Animated.View
       style={[
         styles.container,
         todoItem.completed && styles.completedContainer,
+        animatedStyle,
       ]}
     >
       <View style={styles.content}>
@@ -84,7 +103,7 @@ const [expanded, setExpanded] = useState(false);
           onPress={handleDeleteAction}
         />
       </View>
-    </View>
+    </Animated.View>
   );
 };
 
