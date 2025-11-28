@@ -1,5 +1,7 @@
-
-
+/**
+ * Unit tests for the useList custom hook.
+ * Tests todo CRUD operations, completion toggling, and validation logic.
+ */
 
 import { renderHook, act } from "@testing-library/react-native";
 import useList from "./useList";

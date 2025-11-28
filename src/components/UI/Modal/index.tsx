@@ -1,4 +1,9 @@
-
+/**
+ * Modal Component
+ * 
+ * Reusable confirmation dialog with customizable title, message, and actions.
+ * Used for confirmation prompts like delete operations.
+ */
 
 import Button from "../Button";
 import styles from "./style";

@@ -1,3 +1,12 @@
+/**
+ * TodoItem Component
+ * 
+ * Individual todo list item displaying task details with interactive controls.
+ * Features completion toggle, edit and delete actions, and visual feedback animations.
+ * Highlights on add and on edit to provide user feedback.
+ */
+
+
 import { type Todo } from "../types";
 import styles from "./style";
 import { Animated, Text, View } from "react-native";
@@ -22,6 +31,7 @@ const TodoItem = ({
   const highlightAnim = useRef(new Animated.Value(0)).current;
 const [expanded, setExpanded] = useState(false);
   
+// Briefly highlight the item in purple to show it was updated
 const flashHighlight = () => {
     highlightAnim.setValue(1);
     Animated.timing(highlightAnim, {
@@ -31,6 +41,7 @@ const flashHighlight = () => {
     }).start();
   };
 
+  //only trigger on content change avoid the mark completion change
   useEffect(() => {
     flashHighlight();
   }, [todoItem.task, todoItem.description]);
@@ -62,6 +73,7 @@ const flashHighlight = () => {
     >
       <View style={styles.content}>
         <Button
+          testID="checkbox"
           icons={[todoItem.completed ? "checkmark-circle" : "ellipse-outline"]}
           style={styles.checkbox}
           iconStyle={{ color: "#000" }}
@@ -91,12 +103,14 @@ const flashHighlight = () => {
       </View>
       <View style={styles.actions}>
         <Button
+          testID="edit-button"
           icons={["create-outline"]}
           iconStyle={styles.editBtn}
           variant="text"
           onPress={handleStartEdit}
         />
         <Button
+          testID="delete-button"
           icons={["trash"]}
           iconStyle={styles.trashBtn}
           variant="text"

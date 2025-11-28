@@ -1,4 +1,7 @@
-
+/**
+ * Unit tests for the Input component.
+ * Tests text input, character limits, labels, and multiline functionality.
+ */
 
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';

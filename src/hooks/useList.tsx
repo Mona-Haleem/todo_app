@@ -1,8 +1,13 @@
-
+/**
+ * useList Custom Hook
+ *
+ * Manages todo list state and operations (add, edit, delete, toggle completion).
+ * Provides centralized business logic for todo management with UUID generation.
+ */
 
 import { useState } from "react";
 import { Todo } from "../components/Todo/types";
-import "react-native-get-random-values"; 
+import "react-native-get-random-values"; // Polyfill required for UUID generation in React Native
 import { v4 as uuidv4 } from "uuid";
 const useList = () => {
   const [todoList, setTodoList] = useState<Todo[]>([]);
@@ -15,6 +20,7 @@ const useList = () => {
       description: description.trim(),
       completed: false,
     };
+    // Add new todos to the top (most recent first)
     setTodoList((list) => [newTodo, ...list]);
   };
 

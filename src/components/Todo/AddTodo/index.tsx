@@ -1,3 +1,11 @@
+/**
+ * AddTodo Component
+ * 
+ * A form component for adding new tasks or editing existing ones.
+ * Handles task title and description input with char limit and state management.
+ * Supports both create and edit modes based on selectedTodo prop Existance.
+ */
+
 
 import { useEffect, useState } from "react";
 import Input from "../../ui/Input";
@@ -25,6 +33,7 @@ const AddTodo = ({
     selectedTodo?.description || ""
   );
 
+  //sync form state whit selected todo
   useEffect(() => {
     setTask(selectedTodo?.task || "");
     setDescription(selectedTodo?.description || "");
@@ -36,9 +45,11 @@ const AddTodo = ({
     } else {
       onAdd(task, description);
     }
+    //clean up the form on submition 
     setTask("");
     setDescription("");
     setShowAddForm(false);
+    //clear edit mode after submition
     setSelectedTodo(null)
   };
 

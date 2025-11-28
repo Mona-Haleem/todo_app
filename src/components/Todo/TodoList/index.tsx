@@ -1,5 +1,9 @@
-
-
+/**
+ * TodoList Component
+ * 
+ * Renders a scrollable list of todo items with empty state handling.
+ * Optimized for performance with FlatList virtualization.
+ */
 
 import { Dimensions, FlatList, Text, View } from "react-native";
 import { Todo } from "../types";

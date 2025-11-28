@@ -1,7 +1,10 @@
-
+/**
+ * Unit tests for the TodoItem component.
+ * Tests rendering, completion toggling, edit/delete actions, and visual states.
+ */
 
 import React from "react";
-import { render, fireEvent, act } from "@testing-library/react-native";
+import { render, fireEvent } from "@testing-library/react-native";
 import TodoItem from "../TodoItem";
 import { Todo } from "../types";
 import { Animated } from "react-native";

@@ -1,4 +1,9 @@
-
+/**
+ * TodoListScreen
+ *
+ * Main screen component orchestrating the todo list application.
+ * Manages modal visibility, form state, and coordinates interactions between components.
+ */
 
 import { useEffect, useState } from "react";
 import useList from "../../hooks/useList";
@@ -21,6 +26,7 @@ const TodoListScreen = () => {
     setSelectedItem(null);
   };
 
+  //ensure form is shown on empty state
   useEffect(() => {
     setShowAddForm(todoList.length === 0);
   }, [todoList.length]);

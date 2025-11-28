@@ -1,4 +1,7 @@
-
+/**
+ * Integration tests for TodoListScreen.
+ * Tests complete user workflows including add, edit, complete, and delete operations.
+ */
 
 import React from "react";
 import { render, fireEvent, waitFor } from "@testing-library/react-native";

@@ -1,3 +1,7 @@
+/**
+ * Unit tests for the TodoList component.
+ * Tests list rendering, empty state, and FlatList implementation.
+ */
 
 import React from "react";
 import { render } from "@testing-library/react-native";

@@ -1,3 +1,10 @@
+/**
+ * Header Component
+ * 
+ * Application header displaying the App title and add task button.
+ * Manages the visibility of the add form.
+ */
+
 
 import { Text, View } from "react-native";
 import styles from "./style";

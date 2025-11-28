@@ -1,4 +1,7 @@
-
+/**
+ * Unit tests for the AddTodo component.
+ * Tests form rendering, input handling, save/cancel actions, and edit mode behavior.
+ */
 
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';

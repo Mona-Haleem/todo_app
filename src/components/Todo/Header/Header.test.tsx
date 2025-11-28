@@ -1,3 +1,7 @@
+/**
+ * Unit tests for the Header component.
+ * Tests title rendering and add button form toggling functionality.
+ */
 
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
